@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Augen Hero Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .font-serif-display {
+            font-family: 'DM Serif Display', serif;
+        }
+        /* Custom fade for the image to match the design's ethereal look */
+        .image-fade {
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="h-screen w-full overflow-hidden relative flex flex-col text-[#1a1a1a]">
+
+    <!-- Navigation Header -->
+    <header class="w-full flex justify-center pt-10 z-50 relative">
+        <div class="flex gap-3 items-start">
+            <!-- Logo/Icon Button -->
+            <button class="w-12 h-12 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition duration-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800">
+                    <path d="M12 2v20M2 12h20M4.929 4.929l14.142 14.142M4.929 19.071L19.071 4.929"/>
+                </svg>
+            </button>
+            
+            <div class="flex flex-col items-center gap-3">
+                <!-- Main Menu -->
+                <nav class="bg-[#F2F2F2] rounded-full px-8 h-12 flex items-center gap-9 text-[15px] text-[#333] font-normal tracking-tight">
+                    <a href="#" class="hover:text-black transition-colors">Wearable</a>
+                    <a href="#" class="hover:text-black transition-colors">Neural</a>
+                    <a href="#" class="hover:text-black transition-colors">Programs</a>
+                    <a href="#" class="hover:text-black transition-colors">Updates</a>
+                    <a href="#" class="hover:text-black transition-colors">Search</a>
+                </nav>
+                
+                <!-- Sub-nav Notification -->
+                <a href="#" class="bg-[#F2F2F2] rounded-full pl-5 pr-1.5 py-1 text-[11px] text-gray-500 flex items-center gap-3 hover:bg-gray-200 transition duration-300 group">
+                    <span class="tracking-wide">Discover the future in every update</span>
+                    <span class="w-6 h-4 rounded-full border border-[#8ab4f8] flex items-center justify-center text-[#4285f4] group-hover:bg-blue-50 transition">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow relative w-full flex items-center justify-center">
+        
+        <!-- Central Image (Placeholder with styling to mimic the blurry/faded aesthetic) -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[45%] w-[500px] h-[600px] z-0 pointer-events-none">
+             <!-- Using a placeholder image. In a real scenario, this would be the specific artistic headshot. -->
+             <img src="https://placehold.co/600x800/e0e0e0/e0e0e0" alt="Abstract Head Silhouette" class="w-full h-full object-cover rounded-[150px] image-fade opacity-80 blur-xl grayscale">
+        </div>
+
+        <!-- Content Container -->
+        <div class="w-full max-w-[1400px] px-12 relative z-10 flex items-center h-full">
+            <div class="mt-[-8vh]">
+                <!-- Brand Name -->
+                <div class="mb-5">
+                    <span class="text-[1.35rem] font-bold tracking-tight text-black">augen</span>
+                </div>
+                
+                <!-- Headline -->
+                <h1 class="font-serif-display text-[5.5rem] leading-[1.1] text-[#111] mb-12 font-normal tracking-tight">
+                    Beyond <br> Humanware.
+                </h1>
+                
+                <!-- Explore Links -->
+                <div class="flex items-center gap-5">
+                    <span class="text-gray-400 font-light text-lg tracking-wide">Explore</span>
+                    
+                    <div class="flex gap-3">
+                        <button class="border border-[#60a5fa] text-[#3b82f6] px-5 py-1.5 rounded-full text-[15px] font-medium hover:bg-blue-50 transition-colors duration-200 flex items-center">
+                            A<sup class="text-[10px] ml-0.5">1</sup>&nbsp;Sense
+                        </button>
+                        <button class="border border-[#60a5fa] text-[#3b82f6] px-5 py-1.5 rounded-full text-[15px] font-medium hover:bg-blue-50 transition-colors duration-200 flex items-center">
+                            B<sup class="text-[10px] ml-0.5">1</sup>&nbsp;Eye
+                        </button>
+                        <button class="border border-[#60a5fa] text-[#3b82f6] px-5 py-1.5 rounded-full text-[15px] font-medium hover:bg-blue-50 transition-colors duration-200 flex items-center">
+                            A<sup class="text-[10px] ml-0.5">1</sup>&nbsp;Neuro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Left Indicator -->
+    <div class="absolute bottom-12 left-12">
+        <button class="w-9 h-14 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition duration-300 cursor-pointer">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 mt-1">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </button>
+    </div>
+
+</body>
+</html>
