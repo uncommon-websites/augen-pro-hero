@@ -5,110 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Augen Hero Section</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
         }
-        .font-serif-display {
-            font-family: 'DM Serif Display', serif;
-        }
-        /* Custom fade for the image to match the design's ethereal look */
-        .image-fade {
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-        }
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+
+        /* Custom utility to mimic the soft fade of the central image */
+        .image-fade-mask {
+            mask-image: radial-gradient(circle at center, black 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 70%);
         }
     </style>
 </head>
-<body class="h-screen w-full overflow-hidden relative flex flex-col text-[#1a1a1a]">
+<body class="bg-white h-screen w-full overflow-hidden relative flex flex-col">
 
-    <!-- Navigation Header -->
-    <header class="w-full flex justify-center pt-10 z-50 relative">
-        <div class="flex gap-3 items-start">
-            <!-- Logo/Icon Button -->
-            <button class="w-12 h-12 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition duration-300">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800">
-                    <path d="M12 2v20M2 12h20M4.929 4.929l14.142 14.142M4.929 19.071L19.071 4.929"/>
+    <!-- Navigation Area -->
+    <header class="absolute top-0 left-0 w-full flex flex-col items-center pt-8 z-50">
+        <div class="flex items-center gap-3">
+            <!-- Logo Icon -->
+            <button class="w-12 h-12 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-800">
+                    <path d="M12 2V22M2 12H22M4.92893 4.92893L19.0711 19.0711M19.0711 4.92893L4.92893 19.0711" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
             </button>
-            
-            <div class="flex flex-col items-center gap-3">
-                <!-- Main Menu -->
-                <nav class="bg-[#F2F2F2] rounded-full px-8 h-12 flex items-center gap-9 text-[15px] text-[#333] font-normal tracking-tight">
-                    <a href="#" class="hover:text-black transition-colors">Wearable</a>
-                    <a href="#" class="hover:text-black transition-colors">Neural</a>
-                    <a href="#" class="hover:text-black transition-colors">Programs</a>
-                    <a href="#" class="hover:text-black transition-colors">Updates</a>
-                    <a href="#" class="hover:text-black transition-colors">Search</a>
-                </nav>
-                
-                <!-- Sub-nav Notification -->
-                <a href="#" class="bg-[#F2F2F2] rounded-full pl-5 pr-1.5 py-1 text-[11px] text-gray-500 flex items-center gap-3 hover:bg-gray-200 transition duration-300 group">
-                    <span class="tracking-wide">Discover the future in every update</span>
-                    <span class="w-6 h-4 rounded-full border border-[#8ab4f8] flex items-center justify-center text-[#4285f4] group-hover:bg-blue-50 transition">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </a>
+
+            <!-- Main Nav Links -->
+            <nav class="bg-[#F2F2F2] px-8 h-12 rounded-lg flex items-center gap-8">
+                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Wearable</a>
+                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Neural</a>
+                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Programs</a>
+                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Updates</a>
+                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Search</a>
+            </nav>
+        </div>
+
+        <!-- Sub-banner Notification -->
+        <div class="mt-3 bg-[#F2F2F2] px-4 py-1.5 rounded-full flex items-center gap-2 cursor-pointer hover:bg-gray-200 transition-colors">
+            <span class="text-[11px] text-gray-500 font-normal tracking-wide">Discover the future in every update</span>
+            <div class="w-4 h-4 rounded-full border border-blue-400 flex items-center justify-center">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="flex-grow relative w-full flex items-center justify-center">
-        
-        <!-- Central Image (Placeholder with styling to mimic the blurry/faded aesthetic) -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[45%] w-[500px] h-[600px] z-0 pointer-events-none">
-             <!-- Using a placeholder image. In a real scenario, this would be the specific artistic headshot. -->
-             <img src="https://placehold.co/600x800/e0e0e0/e0e0e0" alt="Abstract Head Silhouette" class="w-full h-full object-cover rounded-[150px] image-fade opacity-80 blur-xl grayscale">
+    <!-- Main Visual (Centered) -->
+    <main class="flex-grow relative flex items-center justify-center z-0">
+        <!-- 
+           Using a placeholder image as requested. 
+           Applying a mask class to simulate the fading/blurry edges of the original design's artistic head image.
+           The original image is a silhouette profile, so we use a grayscale placeholder.
+        -->
+        <div class="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] flex items-center justify-center pointer-events-none">
+            <img src="https://placehold.co/800x800/e5e5e5/333333?text=Profile+Silhouette" 
+                 alt="Abstract Human Profile" 
+                 class="w-full h-full object-cover image-fade-mask opacity-80 mix-blend-multiply grayscale contrast-125">
         </div>
-
-        <!-- Content Container -->
-        <div class="w-full max-w-[1400px] px-12 relative z-10 flex items-center h-full">
-            <div class="mt-[-8vh]">
-                <!-- Brand Name -->
-                <div class="mb-5">
-                    <span class="text-[1.35rem] font-bold tracking-tight text-black">augen</span>
-                </div>
-                
-                <!-- Headline -->
-                <h1 class="font-serif-display text-[5.5rem] leading-[1.1] text-[#111] mb-12 font-normal tracking-tight">
-                    Beyond <br> Humanware.
-                </h1>
-                
-                <!-- Explore Links -->
-                <div class="flex items-center gap-5">
-                    <span class="text-gray-400 font-light text-lg tracking-wide">Explore</span>
-                    
-                    <div class="flex gap-3">
-                        <button class="border border-[#60a5fa] text-[#3b82f6] px-5 py-1.5 rounded-full text-[15px] font-medium hover:bg-blue-50 transition-colors duration-200 flex items-center">
-                            A<sup class="text-[10px] ml-0.5">1</sup>&nbsp;Sense
-                        </button>
-                        <button class="border border-[#60a5fa] text-[#3b82f6] px-5 py-1.5 rounded-full text-[15px] font-medium hover:bg-blue-50 transition-colors duration-200 flex items-center">
-                            B<sup class="text-[10px] ml-0.5">1</sup>&nbsp;Eye
-                        </button>
-                        <button class="border border-[#60a5fa] text-[#3b82f6] px-5 py-1.5 rounded-full text-[15px] font-medium hover:bg-blue-50 transition-colors duration-200 flex items-center">
-                            A<sup class="text-[10px] ml-0.5">1</sup>&nbsp;Neuro
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </main>
 
-    <!-- Bottom Left Indicator -->
-    <div class="absolute bottom-12 left-12">
-        <button class="w-9 h-14 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition duration-300 cursor-pointer">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 mt-1">
+    <!-- Bottom Left Content -->
+    <div class="absolute bottom-12 left-8 md:left-12 z-20 flex flex-col gap-1">
+        <!-- Brand Name -->
+        <div class="text-black font-bold text-lg mb-1 tracking-tight">augen</div>
+        
+        <!-- Headline -->
+        <h1 class="text-4xl md:text-[3.5rem] leading-tight font-normal text-gray-900 tracking-tight mb-8">
+            Beyond Humanware.
+        </h1>
+
+        <!-- Explore Links -->
+        <div class="flex items-center gap-4">
+            <span class="text-gray-500 text-sm font-normal mr-1">Explore</span>
+            
+            <a href="#" class="px-4 py-1.5 rounded-full border border-[#3B82F6] text-[#3B82F6] text-sm hover:bg-blue-50 transition-colors bg-white">
+                A<sup>1</sup> Sense
+            </a>
+            
+            <a href="#" class="px-4 py-1.5 rounded-full border border-[#3B82F6] text-[#3B82F6] text-sm hover:bg-blue-50 transition-colors bg-white">
+                B<sup>1</sup> Eye
+            </a>
+            
+            <a href="#" class="px-4 py-1.5 rounded-full border border-[#3B82F6] text-[#3B82F6] text-sm hover:bg-blue-50 transition-colors bg-white">
+                A<sup>1</sup> Neuro
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-8 md:left-12 transform translate-y-20 md:translate-y-0">
+        <!-- Positioned slightly lower than the text block to match screenshot layout -->
+        <button class="w-8 h-8 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors mt-12">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
                 <path d="M12 5v14M19 12l-7 7-7-7"/>
             </svg>
         </button>
