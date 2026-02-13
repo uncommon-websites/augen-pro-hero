@@ -3,106 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Augen Hero Section</title>
+    <title>Augen - Beyond Humanware</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
         }
 
-        /* Custom utility to mimic the soft fade of the central image */
-        .image-fade-mask {
-            mask-image: radial-gradient(circle at center, black 40%, transparent 70%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 70%);
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Base animation class - ease-out for entering elements */
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        /* Staggered delays for sequential reveals */
+        .delay-0 { animation-delay: 0ms; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
+
+        /* Typography Utilities */
+        .text-balance { text-wrap: balance; }
+        .text-pretty { text-wrap: pretty; }
+        
+        /* Custom font smoothing */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* Image mask to mimic the fade effect in screenshot */
+        .fade-mask {
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
     </style>
 </head>
-<body class="bg-white h-screen w-full overflow-hidden relative flex flex-col">
+<body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col overflow-x-hidden relative selection:bg-gray-200">
 
-    <!-- Navigation Area -->
-    <header class="absolute top-0 left-0 w-full flex flex-col items-center pt-8 z-50">
-        <div class="flex items-center gap-3">
+    <!-- Navigation & Header Area -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pt-6 md:pt-8 pointer-events-none">
+        <!-- Top Row: Logo & Nav -->
+        <div class="flex items-center gap-3 pointer-events-auto animate-fade-in delay-0">
             <!-- Logo Icon -->
-            <button class="w-12 h-12 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-800">
-                    <path d="M12 2V22M2 12H22M4.92893 4.92893L19.0711 19.0711M19.0711 4.92893L4.92893 19.0711" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <button class="w-12 h-12 bg-[#F0F0F0] hover:bg-[#E5E5E5] transition-colors rounded-full flex items-center justify-center text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                    <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
                 </svg>
             </button>
 
-            <!-- Main Nav Links -->
-            <nav class="bg-[#F2F2F2] px-8 h-12 rounded-lg flex items-center gap-8">
-                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Wearable</a>
-                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Neural</a>
-                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Programs</a>
-                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Updates</a>
-                <a href="#" class="text-gray-800 text-[15px] font-normal hover:text-black transition-colors">Search</a>
+            <!-- Navigation Links -->
+            <nav class="bg-[#F0F0F0] rounded-full px-2 py-2 md:px-1 md:py-1 flex items-center">
+                <ul class="flex items-center text-sm font-medium text-gray-700">
+                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Wearable</a></li>
+                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Neural</a></li>
+                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Programs</a></li>
+                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Updates</a></li>
+                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Search</a></li>
+                </ul>
             </nav>
         </div>
 
-        <!-- Sub-banner Notification -->
-        <div class="mt-3 bg-[#F2F2F2] px-4 py-1.5 rounded-full flex items-center gap-2 cursor-pointer hover:bg-gray-200 transition-colors">
-            <span class="text-[11px] text-gray-500 font-normal tracking-wide">Discover the future in every update</span>
-            <div class="w-4 h-4 rounded-full border border-blue-400 flex items-center justify-center">
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </div>
+        <!-- Notification Pill -->
+        <div class="mt-3 pointer-events-auto animate-fade-in delay-100">
+            <a href="#" class="group flex items-center gap-2 bg-[#F5F5F5] hover:bg-[#EFEFEF] transition-colors rounded-full pl-6 pr-2 py-1.5 text-xs text-gray-500 border border-transparent hover:border-gray-200">
+                <span>Discover the future in every update</span>
+                <span class="w-6 h-6 rounded-full border border-blue-300 flex items-center justify-center text-blue-500 group-hover:bg-blue-50 transition-colors">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </span>
+            </a>
         </div>
     </header>
 
-    <!-- Main Visual (Centered) -->
-    <main class="flex-grow relative flex items-center justify-center z-0">
-        <!-- 
-           Using a placeholder image as requested. 
-           Applying a mask class to simulate the fading/blurry edges of the original design's artistic head image.
-           The original image is a silhouette profile, so we use a grayscale placeholder.
-        -->
-        <div class="relative w-[600px] h-[600px] md:w-[800px] md:h-[800px] flex items-center justify-center pointer-events-none">
-            <img src="https://placehold.co/800x800/e5e5e5/333333?text=Profile+Silhouette" 
-                 alt="Abstract Human Profile" 
-                 class="w-full h-full object-cover image-fade-mask opacity-80 mix-blend-multiply grayscale contrast-125">
-        </div>
-    </main>
-
-    <!-- Bottom Left Content -->
-    <div class="absolute bottom-12 left-8 md:left-12 z-20 flex flex-col gap-1">
-        <!-- Brand Name -->
-        <div class="text-black font-bold text-lg mb-1 tracking-tight">augen</div>
+    <!-- Main Content Area -->
+    <main class="flex-grow relative w-full h-screen flex flex-col justify-end pb-12 md:pb-20 px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto">
         
-        <!-- Headline -->
-        <h1 class="text-4xl md:text-[3.5rem] leading-tight font-normal text-gray-900 tracking-tight mb-8">
-            Beyond Humanware.
-        </h1>
-
-        <!-- Explore Links -->
-        <div class="flex items-center gap-4">
-            <span class="text-gray-500 text-sm font-normal mr-1">Explore</span>
-            
-            <a href="#" class="px-4 py-1.5 rounded-full border border-[#3B82F6] text-[#3B82F6] text-sm hover:bg-blue-50 transition-colors bg-white">
-                A<sup>1</sup> Sense
-            </a>
-            
-            <a href="#" class="px-4 py-1.5 rounded-full border border-[#3B82F6] text-[#3B82F6] text-sm hover:bg-blue-50 transition-colors bg-white">
-                B<sup>1</sup> Eye
-            </a>
-            
-            <a href="#" class="px-4 py-1.5 rounded-full border border-[#3B82F6] text-[#3B82F6] text-sm hover:bg-blue-50 transition-colors bg-white">
-                A<sup>1</sup> Neuro
-            </a>
+        <!-- Central Image (Absolute Positioned) -->
+        <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none overflow-hidden">
+            <!-- Using a placeholder that mimics the soft, ethereal head profile -->
+            <!-- The fade-mask class helps blend it into the white background -->
+            <div class="relative w-full h-full max-w-4xl max-h-[80vh] flex items-center justify-center animate-scale-in delay-200">
+                 <img 
+                    src="https://placehold.co/1000x1000/ffffff/e5e5e5?text=Neural+Profile" 
+                    alt="Abstract Neural Profile" 
+                    class="w-full h-full object-contain opacity-90 fade-mask"
+                >
+            </div>
         </div>
-    </div>
 
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-8 md:left-12 transform translate-y-20 md:translate-y-0">
-        <!-- Positioned slightly lower than the text block to match screenshot layout -->
-        <button class="w-8 h-8 bg-[#F2F2F2] rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors mt-12">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
-        </button>
-    </div>
+        <!-- Text Content (Bottom Left) -->
+        <div class="relative z-10 w-full max-w-4xl">
+            <!-- Brand Label -->
+            <div class="mb-4 animate-fade-in-up delay-300">
+                <span class="text-lg font-medium text-black tracking-wide">augen</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-normal text-black tracking-tight leading-[1.1] mb-8 text-balance animate-fade-in-up delay-400">
+                Beyond Humanware.
+            </h1>
+
+            <!-- Explore Section -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 animate-fade-in-up delay-500">
+                <span class="text-gray-500 text-lg font-light">Explore</span>
+                
+                <div class="flex flex-wrap gap-3">
+                    <a href="#" class="group flex items-center justify-center px-5 py-1.5 rounded-full border border-[#4A90E2] text-[#2B7DE9] text-sm font-medium hover:bg-blue-50 transition-all hover:scale-105">
+                        A<sup class="text-[0.6em] -top-1 ml-0.5">1</sup> Sense
+                    </a>
+                    <a href="#" class="group flex items-center justify-center px-5 py-1.5 rounded-full border border-[#4A90E2] text-[#2B7DE9] text-sm font-medium hover:bg-blue-50 transition-all hover:scale-105">
+                        B<sup class="text-[0.6em] -top-1 ml-0.5">1</sup> Eye
+                    </a>
+                    <a href="#" class="group flex items-center justify-center px-5 py-1.5 rounded-full border border-[#4A90E2] text-[#2B7DE9] text-sm font-medium hover:bg-blue-50 transition-all hover:scale-105">
+                        A<sup class="text-[0.6em] -top-1 ml-0.5">1</sup> Neuro
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator (Bottom Left Corner) -->
+        <div class="absolute bottom-6 left-6 md:bottom-10 md:left-12 animate-fade-in delay-700 hidden md:block">
+            <button class="w-8 h-12 bg-[#F5F5F5] hover:bg-[#E5E5E5] rounded-full flex items-center justify-center transition-colors group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 group-hover:translate-y-1 transition-transform">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </button>
+        </div>
+
+    </main>
 
 </body>
 </html>
