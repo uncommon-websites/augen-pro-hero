@@ -6,184 +6,134 @@
     <title>Augen - Beyond Humanware</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animation keyframes */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-                filter: blur(4px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Base animation class - ease-out for entering elements */
         .animate-fade-in-up {
             opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         .animate-fade-in {
             opacity: 0;
-            animation: fadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         .animate-scale-in {
             opacity: 0;
-            animation: scaleIn 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: scaleIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Staggered delays for sequential reveals */
         .delay-0 { animation-delay: 0ms; }
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
         .delay-400 { animation-delay: 400ms; }
         .delay-500 { animation-delay: 500ms; }
-        .delay-600 { animation-delay: 600ms; }
-        .delay-700 { animation-delay: 700ms; }
-        .delay-800 { animation-delay: 800ms; }
 
-        /* Typography Utilities */
         .text-balance { text-wrap: balance; }
         .text-pretty { text-wrap: pretty; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-up, .animate-fade-in, .animate-scale-in {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Custom utility for the specific Apple-like blue */
+        .text-apple-blue { color: #007AFF; }
+        .border-apple-blue { border-color: #007AFF; }
+        .bg-apple-blue { background-color: #007AFF; }
+        .hover\:bg-apple-blue:hover { background-color: #007AFF; }
         
-        /* Custom font smoothing */
-        body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Hide scrollbar for cleaner look */
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
-        /* Image mask to mimic the fade effect in screenshot */
-        .fade-mask {
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-        }
+        /* Custom utility for the light gray backgrounds */
+        .bg-apple-gray { background-color: #F5F5F7; }
     </style>
 </head>
-<body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col overflow-x-hidden relative selection:bg-gray-200">
+<body class="bg-white text-black font-sans antialiased h-screen w-full relative overflow-hidden selection:bg-[#007AFF] selection:text-white">
 
-    <!-- Navigation & Header Area -->
-    <header class="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pt-6 md:pt-8 pointer-events-none">
-        <!-- Top Row: Logo & Nav -->
-        <div class="flex items-center gap-3 pointer-events-auto animate-fade-in delay-0">
+    <!-- Central Hero Image -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 animate-scale-in delay-500">
+        <!-- Using a white background placeholder to simulate the faded edge effect against the white page -->
+        <img src="https://placehold.co/1200x1200/ffffff/e5e5e5?text=Hero+Portrait" alt="Hero Portrait" class="w-auto h-[85vh] object-contain opacity-90" />
+    </div>
+
+    <!-- Top Navigation Area -->
+    <header class="absolute top-0 left-0 w-full pt-8 flex flex-col items-center z-20">
+        
+        <!-- Main Nav Row -->
+        <div class="flex items-center gap-3 animate-fade-in delay-0">
             <!-- Logo Icon -->
-            <button class="w-12 h-12 bg-[#F0F0F0] hover:bg-[#E5E5E5] transition-colors rounded-full flex items-center justify-center text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="2" x2="12" y2="22"></line>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                    <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
+            <button class="w-11 h-11 rounded-full bg-apple-gray flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 active:scale-95" aria-label="Home">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/>
                 </svg>
             </button>
 
-            <!-- Navigation Links -->
-            <nav class="bg-[#F0F0F0] rounded-full px-2 py-2 md:px-1 md:py-1 flex items-center">
-                <ul class="flex items-center text-sm font-medium text-gray-700">
-                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Wearable</a></li>
-                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Neural</a></li>
-                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Programs</a></li>
-                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Updates</a></li>
-                    <li><a href="#" class="px-5 py-2 hover:text-black transition-colors block">Search</a></li>
-                </ul>
+            <!-- Navigation Pills -->
+            <nav class="bg-apple-gray rounded-full px-2 py-1.5 flex items-center">
+                <a href="#" class="px-4 py-1 text-[14px] font-normal tracking-tight text-gray-800 hover:text-gray-500 transition-colors duration-200">Wearable</a>
+                <a href="#" class="px-4 py-1 text-[14px] font-normal tracking-tight text-gray-800 hover:text-gray-500 transition-colors duration-200">Neural</a>
+                <a href="#" class="px-4 py-1 text-[14px] font-normal tracking-tight text-gray-800 hover:text-gray-500 transition-colors duration-200">Programs</a>
+                <a href="#" class="px-4 py-1 text-[14px] font-normal tracking-tight text-gray-800 hover:text-gray-500 transition-colors duration-200">Updates</a>
+                <a href="#" class="px-4 py-1 text-[14px] font-normal tracking-tight text-gray-800 hover:text-gray-500 transition-colors duration-200">Search</a>
             </nav>
         </div>
 
-        <!-- Notification Pill -->
-        <div class="mt-3 pointer-events-auto animate-fade-in delay-100">
-            <a href="#" class="group flex items-center gap-2 bg-[#F5F5F5] hover:bg-[#EFEFEF] transition-colors rounded-full pl-6 pr-2 py-1.5 text-xs text-gray-500 border border-transparent hover:border-gray-200">
-                <span>Discover the future in every update</span>
-                <span class="w-6 h-6 rounded-full border border-blue-300 flex items-center justify-center text-blue-500 group-hover:bg-blue-50 transition-colors">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                </span>
-            </a>
-        </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="flex-grow relative w-full h-screen flex flex-col justify-end pb-12 md:pb-20 px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto">
-        
-        <!-- Central Image (Absolute Positioned) -->
-        <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none overflow-hidden">
-            <!-- Using a placeholder that mimics the soft, ethereal head profile -->
-            <!-- The fade-mask class helps blend it into the white background -->
-            <div class="relative w-full h-full max-w-4xl max-h-[80vh] flex items-center justify-center animate-scale-in delay-200">
-                 <img 
-                    src="https://placehold.co/1000x1000/ffffff/e5e5e5?text=Neural+Profile" 
-                    alt="Abstract Neural Profile" 
-                    class="w-full h-full object-contain opacity-90 fade-mask"
-                >
-            </div>
-        </div>
-
-        <!-- Text Content (Bottom Left) -->
-        <div class="relative z-10 w-full max-w-4xl">
-            <!-- Brand Label -->
-            <div class="mb-4 animate-fade-in-up delay-300">
-                <span class="text-lg font-medium text-black tracking-wide">augen</span>
-            </div>
-
-            <!-- Main Headline -->
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-normal text-black tracking-tight leading-[1.1] mb-8 text-balance animate-fade-in-up delay-400">
-                Beyond Humanware.
-            </h1>
-
-            <!-- Explore Section -->
-            <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 animate-fade-in-up delay-500">
-                <span class="text-gray-500 text-lg font-light">Explore</span>
-                
-                <div class="flex flex-wrap gap-3">
-                    <a href="#" class="group flex items-center justify-center px-5 py-1.5 rounded-full border border-[#4A90E2] text-[#2B7DE9] text-sm font-medium hover:bg-blue-50 transition-all hover:scale-105">
-                        A<sup class="text-[0.6em] -top-1 ml-0.5">1</sup> Sense
-                    </a>
-                    <a href="#" class="group flex items-center justify-center px-5 py-1.5 rounded-full border border-[#4A90E2] text-[#2B7DE9] text-sm font-medium hover:bg-blue-50 transition-all hover:scale-105">
-                        B<sup class="text-[0.6em] -top-1 ml-0.5">1</sup> Eye
-                    </a>
-                    <a href="#" class="group flex items-center justify-center px-5 py-1.5 rounded-full border border-[#4A90E2] text-[#2B7DE9] text-sm font-medium hover:bg-blue-50 transition-all hover:scale-105">
-                        A<sup class="text-[0.6em] -top-1 ml-0.5">1</sup> Neuro
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator (Bottom Left Corner) -->
-        <div class="absolute bottom-6 left-6 md:bottom-10 md:left-12 animate-fade-in delay-700 hidden md:block">
-            <button class="w-8 h-12 bg-[#F5F5F5] hover:bg-[#E5E5E5] rounded-full flex items-center justify-center transition-colors group">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 group-hover:translate-y-1 transition-transform">
-                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+        <!-- Sub Banner -->
+        <div class="mt-3 bg-apple-gray rounded-full pl-5 pr-1.5 py-1.5 flex items-center gap-4 animate-fade-in delay-100">
+            <span class="text-[13px] font-normal tracking-tight text-gray-500">Discover the future in every update</span>
+            <button class="w-6 h-6 rounded-full border border-apple-blue flex items-center justify-center text-apple-blue hover:bg-apple-blue hover:text-white transition-colors duration-200 active:scale-95" aria-label="Discover">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
             </button>
         </div>
+    </header>
 
-    </main>
+    <!-- Bottom Left Content -->
+    <div class="absolute bottom-32 left-[5%] lg:left-[8%] z-20">
+        
+        <!-- Brand & Headline -->
+        <h2 class="text-[20px] font-bold tracking-tight mb-3 animate-fade-in-up delay-200 text-gray-900">augen</h2>
+        <h1 class="text-5xl md:text-[64px] font-light leading-[1.05] tracking-tighter text-balance mb-8 animate-fade-in-up delay-300 text-gray-900">
+            Beyond Humanware.
+        </h1>
+
+        <!-- Explore Actions -->
+        <div class="flex items-center gap-3 animate-fade-in-up delay-400">
+            <span class="text-[14px] font-normal tracking-tight text-gray-500 mr-1">Explore</span>
+            
+            <button class="px-4 py-1.5 rounded-full border border-apple-blue text-apple-blue text-[13px] font-medium tracking-tight hover:bg-apple-blue hover:text-white transition-colors duration-200 active:scale-95">
+                A¹ Sense
+            </button>
+            <button class="px-4 py-1.5 rounded-full border border-apple-blue text-apple-blue text-[13px] font-medium tracking-tight hover:bg-apple-blue hover:text-white transition-colors duration-200 active:scale-95">
+                B¹ Eye
+            </button>
+            <button class="px-4 py-1.5 rounded-full border border-apple-blue text-apple-blue text-[13px] font-medium tracking-tight hover:bg-apple-blue hover:text-white transition-colors duration-200 active:scale-95">
+                A¹ Neuro
+            </button>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-[5%] lg:left-[8%] z-20 animate-fade-in delay-500">
+        <button class="w-8 h-8 rounded-full bg-apple-gray flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 active:scale-95 text-gray-500" aria-label="Scroll down">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </button>
+    </div>
 
 </body>
 </html>
